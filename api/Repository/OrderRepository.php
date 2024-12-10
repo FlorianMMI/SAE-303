@@ -61,7 +61,7 @@ class OrderRepository extends EntityRepository {
     public function getTopSellingProducts() {
         
         $query = "
-            SELECT p.product_name, SUM(oi.quantity) AS total_sales
+            SELECT p.product_name, oi.product_id, SUM(oi.quantity) AS total_sales
             FROM OrderItems oi
             JOIN Orders o ON oi.order_id = o.id
             JOIN Products p ON oi.product_id = p.id

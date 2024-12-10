@@ -25,12 +25,6 @@ abstract class EntityRepository {
     }
 
 
-    /**
-     *  findAll
-     *  Query the data base for all the entities
-     *  Must return an array of Entity objects or false if the query fails
-     */
-    abstract public function findAll();
 
 
 }
