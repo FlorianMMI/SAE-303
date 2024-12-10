@@ -90,27 +90,56 @@ class OrderRepository extends EntityRepository {
         return true;
     }
 
-    public function delete($id) {
-        $query = "DELETE FROM Orders WHERE id = :id";
-        $stmt = $this->cnx->prepare($query);
-        $stmt->execute(['id' => $id]);
-        return true;
+    public function sales6month(){
+        $requete = $this->cnx->prepare(
+            "SELECT 
+            DATE_FORMAT(o.order_date, '%Y-%m') AS month,
+            SUM(oi.quantity * p.price) AS total_sales
+            FROM 
+            OrderItems oi
+            JOIN 
+            Orders o ON oi.order_id = o.id
+            JOIN 
+            Products p ON oi.product_id = p.id
+            WHERE 
+            o.order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            GROUP BY 
+            DATE_FORMAT(o.order_date, '%Y-%m')
+            ORDER BY 
+            month ASC;
+        ");
+
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_CLASS);
+        return $answer;
     }
 
-    public function update($order) {
-        $query = "UPDATE Orders SET customer_id = :customer_id, order_date = :order_date, order_status = :order_status, weigth = :weigth, shipping_cost = :shipping_cost WHERE id = :id";
-        $stmt = $this->cnx->prepare($query);
-        $stmt->execute([
-            'id' => $order->getId(),
-            'customer_id' => $order->getCustomerId(),
-            'order_date' => $order->getOrderDate(),
-            'order_status' => $order->getOrderstatus(),
-            'weigth' => $order->getWeigth(),
-            'shipping_cost' => $order->getShippingCost()
-        ]);
-        return true;
+    public function sales6monthbycat(){
+        $requete = $this->cnx->prepare(
+            "SELECT 
+            DATE_FORMAT(o.order_date, '%Y-%m') AS month,
+            p.category,
+            SUM(oi.quantity * p.price) AS total_sales
+            FROM 
+            OrderItems oi
+            JOIN 
+            Orders o ON oi.order_id = o.id
+            JOIN 
+            Products p ON oi.product_id = p.id
+            WHERE 
+            o.order_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            GROUP BY 
+            month, p.category
+            ORDER BY 
+            month ASC, p.category ASC;
+        ");
 
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_CLASS);
+        return $answer;
     }
+
+
 }
 
 

@@ -14,15 +14,56 @@
 
     <section id="stat" class = "flex flex-col gap-11">
 
-        <section id="content" class="flex justify-between container mx-auto   bg-blue-200  rounded-xl m-1  shadow-xl ">
+        <section id="content" class="flex justify-between container mx-auto border-2 border-blue-400  bg-blue-200  rounded-xl m-1  shadow-xl ">
         
-            <div class = "flex justify-center items-center font-bold text-3xl text-center "> Les 3 meilleurs ventes sur les 2 derniers mois </div>
+            <div class = "flex justify-center items-center font-bold text-2xl text-center "> Les 3 meilleurs ventes sur les 2 derniers mois </div>
             <div  id="chartdiv"></div>
             
         </section>
     
-        <section class ="flex justify-center container mx-auto bg-blue-200 rounded-xl m-1 shadow-xl">
+        <section class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl">
+            <div id = "graphdivtext" class = "flex justify-center items-center font-bold text-2xl text-center m-5"> Nombre de ventes sur les 6 derniers mois </div>
             <div id = "graphdiv"></div>
+            <button id = "graphdivbutton" class="w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="showSalesByCategory()">Afficher les ventes par catégories</button>
+            
+            <div id = "graphdivbycattext" class = "hidden flex-col justify-center items-center font-bold text-2xl max-w-max m-2 text-center gap-7 ">
+                Ventes sur les 6 derniers mois par catégories
+                <ul class = "font-normal text-xs text-left">
+                    <li>Rose = Fruits</li>
+                    <li>Bleu = Patisserie</li>
+                    <li>Violet = Laitier</li>
+                    <li>Orange = Viande</li>
+                    <li>Jaune = Legume</li>
+                </ul>
+            </div>
+            <div class = "hidden" id = "graphdivbycat"></div>
+            <button id = "graphdivbycatbtn" class="hidden w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="showSales()">Afficher les ventes sur les 6 mois</button>
+
+
+            <script>
+            function showSalesByCategory() {
+                document.getElementById('graphdiv').style.display = 'none';
+                document.getElementById('graphdivbutton').style.display = 'none';
+                document.getElementById('graphdivbycat').style.display = 'block';
+                document.getElementById('graphdivbycatbtn').style.display = 'block';
+                document.getElementById('graphdivtext').style.display = 'none';
+                document.getElementById('graphdivbycattext').style.display = 'flex';
+            }
+
+            function showSales() {
+                document.getElementById('graphdiv').style.display = 'block';
+                document.getElementById('graphdivbutton').style.display = 'block';
+                document.getElementById('graphdivbycat').style.display = 'none';
+                document.getElementById('graphdivbycatbtn').style.display = 'none';
+                document.getElementById('graphdivtext').style.display = 'flex';
+                document.getElementById('graphdivbycattext').style.display = 'none';
+            }
+            </script>
+        </section>
+
+        <section class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl">
+            
+            
         </section>
 
     </section>

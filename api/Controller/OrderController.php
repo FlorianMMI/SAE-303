@@ -3,6 +3,7 @@
 
 require_once("Controller.php");
 require_once("Repository/OrderRepository.php");
+require_once("Repository/SaleRepository.php");
 
     class OrderController extends Controller {
         public OrderRepository $orderRepository;
@@ -18,6 +19,12 @@ require_once("Repository/OrderRepository.php");
             if ($stat == "sale") {
                 return $this->orderRepository->getTopSellingProducts();
             }
+            if ($stat == "sale6month") {
+                return $this->orderRepository->sales6month();
+            }
+            if ($stat == "sale6monthbycat") {
+                return $this->orderRepository->sales6monthbycat();
+            }
             if ($id) {
                 return $this->orderRepository->find($id);
             }
@@ -30,31 +37,15 @@ require_once("Repository/OrderRepository.php");
         }
 
         protected function processPostRequest(HttpRequest $request): ?Order {
-            $order = new Order($request->getParam('id'));
-            $order->setCustomerId($request->getParam('customer_id'));
-            $order->setOrderDate($request->getParam('order_date'));
-            $order->setOrderStatus($request->getParam('order_status'));
-            $order->setWeigth($request->getParam('weigth'));
-            $order->setShippingCost($request->getParam('shipping_cost'));
-            $this->orderRepository->save($order);
-            return $order;
+            return null;
         }
 
         protected function processDeleteRequest(HttpRequest $request): ?array {
-            $id = $request->getParam('id');
-            $this->orderRepository->delete($id);
             return null;
         }
 
         protected function processPatchRequest(HttpRequest $request){
-            $order = new Order($request->getParam('id'));
-            $order->setCustomerId($request->getParam('customer_id'));
-            $order->setOrderDate($request->getParam('order_date'));
-            $order->setOrderStatus($request->getParam('order_status'));
-            $order->setWeigth($request->getParam('weigth'));
-            $order->setShippingCost($request->getParam('shipping_cost'));
-            $this->orderRepository->update($order);
-            return $order;
+            return null;
         }
     }
 

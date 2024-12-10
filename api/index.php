@@ -25,8 +25,8 @@ require_once "Controller/SaleController.php";
  *  On ajoutera des "routes" à $router si l'on a d'autres ressource à traiter.
  */
 $router = [
-    "orders" => new OrderController(),
-    "sales" => new SaleController()
+    "orders" => new OrderController()
+
     
 ];
 
