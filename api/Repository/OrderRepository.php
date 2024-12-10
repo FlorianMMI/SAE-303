@@ -57,6 +57,25 @@ class OrderRepository extends EntityRepository {
         return $res;
     }
 
+
+    public function getTopSellingProducts() {
+        
+        $query = "
+            SELECT p.product_name, SUM(oi.quantity) AS total_sales
+            FROM OrderItems oi
+            JOIN Orders o ON oi.order_id = o.id
+            JOIN Products p ON oi.product_id = p.id
+            WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
+            GROUP BY oi.product_id, p.product_name
+            ORDER BY total_sales DESC
+            limit 3
+        ";
+
+        $stmt = $this->cnx->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function save($order) {
         $query = "INSERT INTO Orders (customer_id, order_date, order_status, weigth, shipping_cost) VALUES (:customer_id, :order_date, :order_status, :weigth, :shipping_cost)";
         $stmt = $this->cnx->prepare($query);

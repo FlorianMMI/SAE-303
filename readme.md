@@ -22,3 +22,24 @@ git checkout iterationX
 git pull origin iterationX
 
 
+
+Commande SQL : 
+
+Itearation 4 
+
+SELECT 
+    p.product_name,
+    oi.product_id,
+    SUM(oi.quantity) AS total_sales
+FROM 
+    OrderItems oi
+JOIN 
+    Orders o ON oi.order_id = o.id
+JOIN 
+    Products p ON oi.product_id = p.id
+WHERE 
+    o.order_date >= DATE_SUB(CURDATE(), INTERVAL 2 MONTH)
+GROUP BY 
+    oi.product_id, p.product_name
+ORDER BY 
+    total_sales DESC

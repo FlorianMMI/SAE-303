@@ -1,6 +1,12 @@
 import { HeaderView } from "./ui/header/index.js";
 import { StatutView } from "./ui/statut/index.js";
+import { am5 } from "./ui/TopSale - Graph/index.js";
+
+
 import { orderData } from "../data/commande.js";
+import { saleData } from "../data/sale.js";
+
+
 
 import './index.css';
 
@@ -8,6 +14,7 @@ let C = {};
 
 C.init = async function(){
     C.loadStatut();
+    C.loadSale();
     V.init();
 }
 
@@ -21,9 +28,18 @@ C.loadStatut = async function(){
 
 }
 
+C.loadSale = async function(){
+    let Saledata = await saleData.getSale();
+    console.log(Saledata);
+    return Saledata;
+}
+
+
+
 let V = {
     header: document.querySelector("#header"),
-    statut: document.querySelector("#statut")
+    statut: document.querySelector("#statut"),
+
 };
 
 
@@ -43,6 +59,11 @@ V.renderStatut = function(orderData, orderData2, orderData3){
     V.statut.innerHTML += StatutView.render(orderData3, "Shipped");
     
 }
+
+V.renderGraph = function(){
+    
+}
+
 
 C.init();
 
