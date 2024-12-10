@@ -24,12 +24,6 @@ abstract class EntityRepository {
         $this->cnx = new PDO("mysql:host=mmi.unilim.fr;dbname=bounissou1", "bounissou1", "bounissou1");
     }
 
-    /**
-     *  find
-     *  Query the data base for the entity with id $id.
-     *  Must return an Entity object or false if the query fails
-     */
-    abstract public function find($id);
 
     /**
      *  findAll
@@ -38,25 +32,5 @@ abstract class EntityRepository {
      */
     abstract public function findAll();
 
-    /**
-     *  save
-     *  Save in the data base a new Entity object.
-     *  Update the Entity object with its data base id.
-     *  Must return true or false if it fails to save the object.
-     */
-    abstract public function save($entity);
 
-    /**
-     *  delete
-     *  delete in the data base Entity object with id $id
-     *  Must return true or false if it fails to delete the object.
-     */
-    abstract public function delete($id);
-
-     /**
-     *  udpate
-     *  update in the data base Entity object $entity
-     *  Must return true or false if it fails to delete the object.
-     */
-    abstract public function update($entity);
 }
