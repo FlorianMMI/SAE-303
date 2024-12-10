@@ -14,8 +14,8 @@ require_once("Repository/OrderRepository.php");
         protected function processGetRequest(HttpRequest $request): ?array {
             $id = $request->getId("id");
             $order_status = $request->getParam("countorderstatus");
-            $sale = $request->getParam("sale");
-            if ($sale) {
+            $stat = $request->getParam("stat");
+            if ($stat == "sale") {
                 return $this->orderRepository->getTopSellingProducts();
             }
             if ($id) {

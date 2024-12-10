@@ -1,10 +1,12 @@
 import { HeaderView } from "./ui/header/index.js";
 import { StatutView } from "./ui/statut/index.js";
 import { am5 } from "./ui/TopSale - Graph/index.js";
+import { graph } from "./ui/Sale6m - graph/index.js";
 
 
 import { orderData } from "../data/commande.js";
 import { saleData } from "../data/sale.js";
+
 
 
 

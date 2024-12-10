@@ -11,12 +11,24 @@
 
     <section class = "flex justify-center gap-y-2" id  = "statut"></section>
 
-    <section id="content" class="flex justify-between container mx-auto   bg-blue-200  rounded-xl m-1  shadow-xl ">
+
+    <section id="stat" class = "flex flex-col gap-11">
+
+        <section id="content" class="flex justify-between container mx-auto   bg-blue-200  rounded-xl m-1  shadow-xl ">
         
-        <div class = "flex justify-center items-center font-bold text-3xl text-center "> Les 3 meilleurs ventes sur les 2 derniers mois </div>
-        <div  id="chartdiv"></div>
-        
+            <div class = "flex justify-center items-center font-bold text-3xl text-center "> Les 3 meilleurs ventes sur les 2 derniers mois </div>
+            <div  id="chartdiv"></div>
+            
+        </section>
+    
+        <section class ="flex justify-center container mx-auto bg-blue-200 rounded-xl m-1 shadow-xl">
+            <div id = "graphdiv"></div>
+        </section>
+
     </section>
+    
+
+
 
     
     <script type="module" src="src/main.js"></script>
