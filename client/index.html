@@ -36,10 +36,11 @@
                     <li>Jaune = Legume</li>
                 </ul>
             </div>
+
             <div class = "hidden" id = "graphdivbycat"></div>
             <button id = "graphdivbycatbtn" class="hidden w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="showSales()">Afficher les ventes sur les 6 mois</button>
 
-
+            
             <script>
             function showSalesByCategory() {
                 document.getElementById('graphdiv').style.display = 'none';
@@ -61,8 +62,11 @@
             </script>
         </section>
 
+
+
         <section class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl">
-            
+            <div class = "flex justify-center items-center font-bold text-2xl text-center "> 10 produits en sous-stock </div>
+            <div id = "tenproductdiv"></div>
             
         </section>
 

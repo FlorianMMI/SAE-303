@@ -3,6 +3,7 @@ import { StatutView } from "./ui/statut/index.js";
 import { am5 } from "./ui/TopSale - Graph/index.js";
 import { graph } from "./ui/Sale6m - graph/index.js";
 import { graphbycat } from "./ui/Sale6mbycat - graph/index.js";
+import { graphten } from "./ui/tenproduct - graph/index.js";
 
 
 import { orderData } from "../data/commande.js";
