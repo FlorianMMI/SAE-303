@@ -3,6 +3,7 @@ require_once "Class/HttpRequest.php";
 require_once "Controller/OrderController.php";
 require_once "Controller/ProductController.php";
 require_once "Controller/SaleController.php";
+require_once "Controller/ClientController.php";
 
 /** IMPORTANT
  * 
@@ -28,6 +29,7 @@ require_once "Controller/SaleController.php";
 $router = [
     "orders" => new OrderController(),
     "products" => new ProductController(),
+    "client" => new ClientController(),
 
     
 ];
