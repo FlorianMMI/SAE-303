@@ -17,6 +17,20 @@ require_once("Repository/ProductRepository.php");
             if ($stat == "stock") {
                 return $this->productRepository->findlessstock();
             }
+            if ($stat == "salesbyproduct") {
+                $id = $request->getParam("id");
+                if ($id == false) {
+                    return null;
+                }
+                else {
+                    
+                    return $this->productRepository->salesbyproduct($id);
+                }
+                
+            }
+            if ($stat == "productbyname") {
+                return $this->productRepository->productbyname();
+            }
             else {
                 return null;    
             }

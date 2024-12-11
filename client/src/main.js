@@ -4,6 +4,8 @@ import { am5 } from "./ui/TopSale - Graph/index.js";
 import { graph } from "./ui/Sale6m - graph/index.js";
 import { graphbycat } from "./ui/Sale6mbycat - graph/index.js";
 import { graphten } from "./ui/tenproduct - graph/index.js";
+import { productView } from "./ui/selectproduct/index.js";
+import { graphproduct } from "./ui/selectproduct - Gra/index.js";
 
 
 import { orderData } from "../data/commande.js";
@@ -13,12 +15,14 @@ import { saleData } from "../data/sale.js";
 
 
 import './index.css';
+import { dataproduct } from "../data/productbyid.js";
 
 let C = {};
 
 C.init = async function(){
     C.loadStatut();
     C.loadSale();
+    C.loadProduct();
     V.init();
     
 }
@@ -33,6 +37,14 @@ C.loadStatut = async function(){
 
 }
 
+
+
+C.loadProduct = async function(){
+    let productData = await dataproduct.getproductname();
+    console.log(productData);
+    V.renderProduct(productData);
+}
+
 C.loadSale = async function(){
     let Saledata = await saleData.getSale();
     console.log(Saledata);
@@ -44,6 +56,7 @@ C.loadSale = async function(){
 let V = {
     header: document.querySelector("#header"),
     statut: document.querySelector("#statut"),
+    product: document.querySelector("#productselect"),
 
 };
 
@@ -52,6 +65,7 @@ let V = {
 
 V.init = async function(){
     V.renderHeader();
+    V.renderGraph();
 }
 
 V.renderHeader = function(){
@@ -65,10 +79,30 @@ V.renderStatut = function(orderData, orderData2, orderData3){
     
 }
 
-V.renderGraph = function(){
-    
+V.renderProduct = function(productData){
+    V.product.innerHTML = productView.render(productData);
 }
 
+
+
+V.product.addEventListener('change', async function(event) {
+    let selectedProductName = event.target.value;
+    console.log(selectedProductName);
+    let selectedProductId = event.target.options[event.target.selectedIndex].dataset.id;
+    console.log(selectedProductId);
+    document.querySelector("#productdivcontainer").innerHTML = "";
+    let tmp = document.createElement("div");
+    tmp.id = "productdiv";
+    document.querySelector("#productdivcontainer").innerHTML = tmp.outerHTML;
+    graphproduct("productdiv", selectedProductId);
+    
+
+});
+
+V.renderGraph = function(){
+    graphbycat("graphdivbycat");
+
+}
 
 C.init();
 
