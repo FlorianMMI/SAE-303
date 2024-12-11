@@ -94,6 +94,8 @@ V.product.addEventListener('change', async function(event) {
     let tmp = document.createElement("div");
     tmp.id = "productdiv";
     document.querySelector("#productdivcontainer").innerHTML = tmp.outerHTML;
+    console.log(selectedProductId);
+    
     graphproduct("productdiv", selectedProductId);
     
 

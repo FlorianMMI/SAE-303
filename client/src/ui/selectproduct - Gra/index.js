@@ -9,6 +9,7 @@ import { dataproduct } from "../../../data/productbyid.js";
 let graphproduct = function(div, id) {
 am5.ready(async function() {
 
+    console.log(id);
     let productdata = await dataproduct.getproductbyid(id);
     console.log(productdata);
     productdata = productdata.map(item => {

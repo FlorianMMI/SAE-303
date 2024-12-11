@@ -3,7 +3,7 @@ import { getRequest } from '../src/lib/api-request.js';
 let dataproduct = {};
 
 dataproduct.getproductbyid = async function(status){
-    let request = `products?stat=salesbyproduct&id=1`;
+    let request = `products?stat=salesbyproduct&id=${status}`;
     let data = await getRequest(request);
     return data;
 }
