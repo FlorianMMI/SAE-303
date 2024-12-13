@@ -71,7 +71,47 @@ class ProductRepository extends EntityRepository {
         $answer = $requete->fetchAll(PDO::FETCH_CLASS);
         return $answer;
     }
+
+    public function salesbycountry($month){
+        $requete = $this->cnx->prepare(
+            "SELECT 
+            DATE_FORMAT(o.order_date, '%Y-%m') AS month,
+            c.country AS country,
+            SUM(oi.quantity) AS total_items_shipped
+            FROM 
+            Orders o
+            JOIN 
+            OrderItems oi ON o.id = oi.order_id
+            JOIN 
+            Customers c ON o.customer_id = c.id
+            WHERE 
+            DATE_FORMAT(o.order_date, '%Y-%m') = :month
+            GROUP BY 
+            month, country
+            ORDER BY 
+            month ASC, total_items_shipped DESC;"
+        );
+        $requete->bindParam(":month", $month);
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_CLASS);
+        return $answer;
+    }
     
+    public function country(){
+        $requete = $this->cnx->prepare(
+            "SELECT 
+            country
+            FROM 
+            Customers
+            GROUP BY 
+            country
+            ORDER BY 
+            country ASC;"
+        );
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_CLASS);
+        return $answer;
+    }
     
     
 

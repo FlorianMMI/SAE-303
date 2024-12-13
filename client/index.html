@@ -1,95 +1,145 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SAE3.DWeb-DI.03 base code</title>
-    <link rel="stylesheet" href="./src/index.css">
-</head>
-<body class="bg-gray-100">
+    <link rel="stylesheet" href="./src/index.css" />
+  </head>
+  <body class="bg-gray-100">
     <section id="header"></section>
 
-    <section class = "flex justify-center gap-y-2" id  = "statut"></section>
-
-
-    <section id="stat" class = "flex flex-col gap-11">
-
-        <section id="content" class="flex justify-between container mx-auto border-2 border-blue-400  bg-blue-200  rounded-xl m-1  shadow-xl ">
+    <section class="flex justify-center gap-y-2" id="statut"></section>
+    <container class = "flex flex-row gap-7 ml-4 mr-4 flex-wrap lg:flex-nowrap">
         
+        <section
+            id="content"
+            class="flex flex-col justify-between container mx-auto border-2 border-blue-400 bg-blue-100 rounded-xl m-1 shadow-md"
+        >
             <div class = "flex justify-center items-center font-bold text-2xl text-center "> Les 3 meilleurs ventes sur les 2 derniers mois </div>
-            <div  id="chartdiv"></div>
-            
+            <div id="chartdiv"></div>
         </section>
-    
-        <section class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl">
+
+        
+
+        <section
+            class="flex flex-col justify-center container mx-auto border-2 border-blue-300 bg-blue-100 rounded-xl m-1 shadow-md"
+        >
+            <div
+            class="flex justify-center items-center font-bold text-2xl text-center"
+            >
+            10 produits en sous-stock
+            </div>
+            <div id="tenproductdiv"></div>
+        </section>
+
+    </container>
+
+    <section
+            class="flex justify-center mx-auto border-2 ml-4 mr-4 mt-7  border-blue-300 bg-blue-100 rounded-xl m-1 shadow-md"
+        >
             <div id = "graphdivtext" class = "flex justify-center items-center font-bold text-2xl text-center m-5"> Nombre de ventes sur les 6 derniers mois </div>
-            <div id = "graphdiv"></div>
-            <button id = "graphdivbutton" class="w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="showSalesByCategory()">Afficher les ventes par catégories</button>
-            
-            <div id = "graphdivbycattext" class = "hidden flex-col justify-center items-center font-bold text-2xl max-w-max m-2 text-center gap-7 ">
-                Ventes sur les 6 derniers mois par catégories
-                <ul class = "font-normal text-xs text-left">
-                    <li>Rose = Fruits</li>
-                    <li>Bleu = Patisserie</li>
-                    <li>Violet = Laitier</li>
-                    <li>Orange = Viande</li>
-                    <li>Jaune = Legume</li>
-                </ul>
+            <div id="graphdiv"></div>
+            <button
+            id="graphdivbutton"
+            class="w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            onclick="showSalesByCategory()"
+            >
+            Afficher les ventes par catégories
+            </button>
+
+            <div
+            id="graphdivbycattext"
+            class="hidden flex-col justify-center items-center font-bold text-2xl max-w-max m-2 text-center gap-7"
+            >
+            Ventes sur les 6 derniers mois par catégories
+            <ul class="font-normal text-xs text-center">
+                <li>Rose = Fruits</li>
+                <li>Bleu = Patisserie</li>
+                <li>Violet = Laitier</li>
+                <li>Orange = Viande</li>
+                <li>Jaune = Legume</li>
+            </ul>
             </div>
 
-            <div class = "hidden" id = "graphdivbycat"></div>
-            <button id = "graphdivbycatbtn" class="hidden w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onclick="showSales()">Afficher les ventes sur les 6 mois</button>
+            <div class="hidden" id="graphdivbycat"></div>
+            <button
+            id="graphdivbycatbtn"
+            class="hidden w-52 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            onclick="showSales()"
+            >
+            Afficher les ventes sur les 6 mois
+            </button>
 
-            
             <script>
             function showSalesByCategory() {
-                document.getElementById('graphdiv').style.display = 'none';
-                document.getElementById('graphdivbutton').style.display = 'none';
-                document.getElementById('graphdivbycat').style.display = 'block';
-                document.getElementById('graphdivbycatbtn').style.display = 'block';
-                document.getElementById('graphdivtext').style.display = 'none';
-                document.getElementById('graphdivbycattext').style.display = 'flex';
+                document.getElementById("graphdiv").style.display = "none";
+                document.getElementById("graphdivbutton").style.display = "none";
+                document.getElementById("graphdivbycat").style.display = "block";
+                document.getElementById("graphdivbycatbtn").style.display = "block";
+                document.getElementById("graphdivtext").style.display = "none";
+                document.getElementById("graphdivbycattext").style.display = "flex";
             }
 
             function showSales() {
-                document.getElementById('graphdiv').style.display = 'block';
-                document.getElementById('graphdivbutton').style.display = 'block';
-                document.getElementById('graphdivbycat').style.display = 'none';
-                document.getElementById('graphdivbycatbtn').style.display = 'none';
-                document.getElementById('graphdivtext').style.display = 'flex';
-                document.getElementById('graphdivbycattext').style.display = 'none';
+                document.getElementById("graphdiv").style.display = "block";
+                document.getElementById("graphdivbutton").style.display = "block";
+                document.getElementById("graphdivbycat").style.display = "none";
+                document.getElementById("graphdivbycatbtn").style.display = "none";
+                document.getElementById("graphdivtext").style.display = "flex";
+                document.getElementById("graphdivbycattext").style.display = "none";
             }
             </script>
         </section>
 
-
-
-        <section class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl">
-            <div class = "flex justify-center items-center font-bold text-2xl text-center "> 10 produits en sous-stock </div>
-            <div id = "tenproductdiv"></div>
-            
-        </section>
-
-    </section>
+    <container class = "flex flex-row  mr-4 ml-4 gap-3 mt-7">
+      
+      <section class = " flex flex-col justify-center gap-7 bg-blue-200 rounded-md h-auto w-52" id = "selecteur">
+        <select class="bg-blue-200 mr-4 ml-4" id="productselect"></select>
+        <p> Vente du produit  </p>
+      </section>
+      
+      <div
+        class="flex justify-center container mx-auto border-2 border-blue-300 bg-blue-100 rounded-xl m-1 shadow-md"
+        id="productdivcontainer"
+      >
+        <div id="productdiv"></div>
+      </div>
     
-    <section class ="">
-        <select id = "productselect"></select>
-        <div class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl" id = "productdivcontainer">
-        <div  id = "productdiv"></div></div>
-    </section>
-
-    <section class ="">
-        <select id = "clientselect">
-            
-        </select> <!-- liste déroulante des clients -->
-        <div class ="flex justify-center container mx-auto border-2 border-green-300 bg-green-100 rounded-xl m-1 shadow-xl" id = "clientdivcontainer"> <!-- div -> boite  -->
-        <div  id = "clientdiv"></div></div> <!-- l'affichage du graphique -->
-    </section>
-   
-
 
 
     
+
+    
+      
+      <div
+        class="flex justify-center container mx-auto  border-2 border-blue-300 bg-blue-100 rounded-xl m-1 shadow-md"
+        id="clientdivcontainer"
+      >
+        
+        <div id="clientdiv"></div>
+      </div>
+      
+    
+      <section class = " flex flex-col justify-center gap-7 bg-blue-200 rounded-md h-auto" id = "selecteur">
+        <p class ="text-center"> Produit de la commande du client</p>
+        <select class="bg-blue-200 mr-4 ml-4" id="clientselect"></select>
+      </section>
+
+    </container>
+
+    
+
+    <section id = "mapdivcontainer">
+        <div class = "flex flex-row justify-center items-center mt-5">
+
+          <div class="flex justify-center items-center font-bold text-2xl text-center m-5"> Les ventes des pays selon le mois choisis </div>
+          <select class="bg-blue-200 mr-4 ml-4 h-min rounded-sm" id="countryselect"></select>
+        </div>
+        
+        <div id="mapdiv"></div>
+    </section>
+
     <script type="module" src="src/main.js"></script>
-</body>
+    </body>
 </html>

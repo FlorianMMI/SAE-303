@@ -4,7 +4,7 @@
 
 
 #chartdiv {
-  width: 75%;
+  width: 100%;
   height: 375px;
 }
 
@@ -19,16 +19,21 @@
 }
 
 #tenproductdiv{
-  width: 75%;
+  width: 100%;
   height: 375px;
 }
 
 #productdiv{
-  width: 75%;
+  width: 100%;
   height: 375px;
 }
 
 #clientdiv{
-  width: 75%;
+  width: 100%;
   height: 375px;
+}
+
+#mapdiv {
+  width: 100%;
+  height: 550px;
 }

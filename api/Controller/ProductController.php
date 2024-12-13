@@ -31,9 +31,18 @@ require_once("Repository/ProductRepository.php");
             if ($stat == "productbyname") {
                 return $this->productRepository->productbyname();
             }
+            if ($stat == "salesbycountry") {
+                $month = $request->getParam("month");
+                return $this->productRepository->salesbycountry($month);
+            }
+            if ($stat == "country") {
+                return $this->productRepository->country();
+            }
             else {
                 return null;    
             }
+            
+            
         }
 
         protected function processPostRequest(HttpRequest $request): ?Order {

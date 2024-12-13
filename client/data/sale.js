@@ -10,5 +10,15 @@ saleData.getSale = async function(){
     return data;
 }
 
+let saleDatacountry = {};
 
+saleDatacountry.getSalecountry = async function(value){
+    let request = `products?stat=salesbycountry&month=${value}`;
+    
+    let data = await getRequest(request);
+    console.log(data);
+    return data;
+}
+
+export { saleDatacountry };
 export { saleData };

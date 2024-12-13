@@ -25,6 +25,9 @@ require_once("Repository/SaleRepository.php");
             if ($stat == "sale6monthbycat") {
                 return $this->orderRepository->sales6monthbycat();
             }
+            if ($stat == "month"){
+                return $this->orderRepository->month();
+            }
             if ($id) {
                 return $this->orderRepository->find($id);
             }

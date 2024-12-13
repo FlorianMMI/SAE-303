@@ -6,8 +6,10 @@ import { graphbycat } from "./ui/Sale6mbycat - graph/index.js";
 import { graphten } from "./ui/tenproduct - graph/index.js";
 import { productView } from "./ui/selectproduct/index.js";
 import { clientView } from "./ui/selectclient/index.js";
+import { countryView } from "./ui/selectcountry/index.js";
 import { graphproduct } from "./ui/selectproduct - Gra/index.js";
 import { graphclient } from "./ui/selectclient - graph/index.js";
+
 
 
 import { orderData } from "../data/commande.js";
@@ -19,6 +21,9 @@ import { saleData } from "../data/sale.js";
 import './index.css';
 import { dataproduct } from "../data/productbyid.js";
 import { dataclient } from "../data/client.js";
+import { dataclientcountry } from "../data/client.js";
+import { datamonth } from "../data/client.js";
+import { mapview } from "./ui/graphmap/index.js";
 
 let C = {};
 
@@ -27,6 +32,7 @@ C.init = async function(){
     C.loadSale();
     C.loadProduct();
     C.loadClient();
+    C.loadSaleCountry();
     V.init();
     
 }
@@ -55,6 +61,12 @@ C.loadClient = async function(){
     V.renderClient(clientData);
 }
 
+C.loadSaleCountry = async function(){
+    let Datacountry = await datamonth.getmonth();
+    console.log("Les data du country sont ", Datacountry);
+    V.renderCountry(Datacountry);
+}
+
 
 C.loadSale = async function(){
     let Saledata = await saleData.getSale();
@@ -69,6 +81,8 @@ let V = {
     statut: document.querySelector("#statut"),
     product: document.querySelector("#productselect"),
     client: document.querySelector("#clientselect"),
+    country : document.querySelector("#countryselect")
+    
 
 };
 
@@ -98,6 +112,10 @@ V.renderProduct = function(productData){
 
 V.renderClient = function(clientData){
     V.client.innerHTML = clientView.render(clientData);
+}
+
+V.renderCountry = function(countryData){
+    V.country.innerHTML = countryView.render(countryData);
 }
 
 
@@ -132,10 +150,23 @@ V.client.addEventListener('change', async function(event) {
     
 
 });
+V.country.addEventListener('change', async function(event) {
+    let selectedCountryName = event.target.value;
+    console.log(selectedCountryName);
+    let selectedCountryId = event.target.options[event.target.selectedIndex].dataset.id;
+    console.log(selectedCountryId);
+    document.querySelector("#mapdivcontainer").innerHTML = "";
+    let tmp = document.createElement("div");
+    tmp.id = "mapdiv";
+    document.querySelector("#mapdivcontainer").innerHTML = tmp.outerHTML;
+    mapview("mapdiv", selectedCountryName);
+});
 
 V.renderGraph = function(){
     graphbycat("graphdivbycat");
-
+    graphproduct("productdiv", 16);
+    graphclient("clientdiv", 20);
+    mapview("mapdiv", "2024-06");
 }
 
 C.init();
