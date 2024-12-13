@@ -24,6 +24,7 @@ import { dataclient } from "../data/client.js";
 import { dataclientcountry } from "../data/client.js";
 import { datamonth } from "../data/client.js";
 import { mapview } from "./ui/graphmap/index.js";
+import { heatview } from "./ui/heatmap/index.js";
 
 let C = {};
 
@@ -81,7 +82,8 @@ let V = {
     statut: document.querySelector("#statut"),
     product: document.querySelector("#productselect"),
     client: document.querySelector("#clientselect"),
-    country : document.querySelector("#countryselect")
+    country : document.querySelector("#countryselect"),
+    heat: document.querySelector("#heatdiv")
     
 
 };
@@ -167,6 +169,7 @@ V.renderGraph = function(){
     graphproduct("productdiv", 16);
     graphclient("clientdiv", 20);
     mapview("mapdiv", "2024-06");
+    heatview("heatdiv");
 }
 
 C.init();
